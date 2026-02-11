@@ -1,0 +1,349 @@
+:root {
+    /* Color Palette: Deep Blue & Emerald Green */
+    --primary-blue: #0f172a;
+    /* Slate 900 */
+    --secondary-blue: #1e293b;
+    /* Slate 800 */
+    --accent-green: #10b981;
+    /* Emerald 500 */
+    --deep-green: #064e3b;
+    /* Emerald 900 */
+    --text-light: #f1f5f9;
+    /* Slate 100 */
+    --text-dim: #94a3b8;
+    /* Slate 400 */
+
+    /* Glassmorphism */
+    --glass-bg: rgba(15, 23, 42, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--primary-blue);
+    color: var(--text-light);
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Background Animation */
+.bg-gradient {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top left, var(--deep-green), transparent 40%),
+        radial-gradient(circle at bottom right, var(--secondary-blue), transparent 40%);
+    z-index: -2;
+}
+
+.floating-shapes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.6;
+    animation: float 20s infinite alternate ease-in-out;
+}
+
+.shape-1 {
+    width: 300px;
+    height: 300px;
+    background: var(--accent-green);
+    top: -10%;
+    left: -10%;
+}
+
+.shape-2 {
+    width: 400px;
+    height: 400px;
+    background: var(--secondary-blue);
+    bottom: 20%;
+    right: -10%;
+    animation-delay: -5s;
+}
+
+.shape-3 {
+    width: 200px;
+    height: 200px;
+    background: #3b82f6;
+    /* Blue 500 equivalent */
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: -10s;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(30px, 40px);
+    }
+}
+
+/* Layout */
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+}
+
+/* Glass Card */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: var(--glass-shadow);
+    text-align: center;
+    width: 100%;
+    animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Typography */
+h1,
+h2 {
+    font-family: 'Cinzel', serif;
+    color: var(--accent-green);
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 1.8rem;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--text-dim);
+    margin-bottom: 25px;
+}
+
+.divider {
+    height: 1px;
+    width: 60%;
+    background: linear-gradient(90deg, transparent, var(--accent-green), transparent);
+    margin: 0 auto 25px auto;
+}
+
+.message {
+    line-height: 1.8;
+    font-size: 1.05rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Counter */
+.date-ref {
+    margin-bottom: 30px;
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.counter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 20px;
+    justify-content: center;
+}
+
+.time-unit {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 15px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.time-unit:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-green);
+}
+
+.number {
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: 'Cinzel', serif;
+    color: var(--text-light);
+}
+
+.label {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-top: 5px;
+    text-transform: uppercase;
+}
+
+/* Carousel 3D */
+.carousel-section {
+    width: 100%;
+    perspective: 1000px;
+    margin: 60px 0 100px 0;
+    /* Extra space at bottom */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.carousel-container {
+    width: 200px;
+    height: 250px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: rotate 20s infinite linear;
+}
+
+.carousel {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+}
+
+.carousel-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: center;
+    /* Translate Z depends on number of items. 
+       Radius approx = (Width / 2) / tan(PI / count).
+       For 8 items, angle = 45deg. tan(22.5) ~ 0.41. 
+       Radius ~ 100 / 0.41 ~ 240px. 
+       Let's use 300px for spacing.
+    */
+    transform: rotateY(calc(var(--i) * 45deg)) translateZ(350px);
+
+    /* Decoration */
+    border-radius: 20px;
+    /* Heart shape frame logic or just rounded cards?
+       User asked for "structure with form of a Heart".
+       Let's use a clip-path for internal image, but card style.
+    */
+}
+
+/* Image Styling */
+.carousel-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    border: 2px solid var(--accent-green);
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+}
+
+/* Placeholder Styling (Legacy or fallback) */
+.img-placeholder {
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid var(--accent-green);
+    border-radius: 20px;
+    /* Or custom heart clippath? */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cinzel', serif;
+    color: var(--text-light);
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+
+    /* Making them slightly Heart-Like via CSS shape or border radius? 
+       Let's do a beautiful frame.
+    */
+}
+
+/* Animation */
+@keyframes rotate {
+    from {
+        transform: rotateY(0deg);
+    }
+
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    .carousel-container {
+        margin-top: 50px;
+        /* Scale down scene on mobile */
+        transform: scale(0.7) rotateY(0deg);
+        /* Animation overrides this */
+        animation: rotate 20s infinite linear;
+        /* Important: Scale needs to be on parent or handled differently if animation overwrites transform */
+    }
+
+    /* Better mobile scaling for carousel */
+    .carousel-section {
+        perspective: 800px;
+        overflow: hidden;
+    }
+}
+
+footer {
+    margin-top: auto;
+    padding: 20px;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+}
